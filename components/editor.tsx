@@ -31,11 +31,17 @@ const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
     uploadFile: handleUpload,
   });
 
+  // Set editable state after editor creation
+  if (editor && typeof editable !== "undefined") {
+    editor.isEditable = editable;
+  }
+
   return (
     <div>
       <BlockNoteView
         editor={editor}
         theme={resolvedTheme === "dark" ? "dark" : "light"}
+        editable={editable}
         onChange={() => {
           onChange(JSON.stringify(editor.document, null, 2));
         }}
