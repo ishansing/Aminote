@@ -1,5 +1,6 @@
 "use client";
 import { useTheme } from "next-themes";
+import { useEffect } from "react";
 import { BlockNoteView } from "@blocknote/mantine";
 import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
@@ -24,17 +25,19 @@ const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
   };
 
   const editor: BlockNoteEditor = useCreateBlockNote({
-    editable,
+    // Remove 'editable' from here - it's not a valid option
     initialContent: initialContent
       ? (JSON.parse(initialContent) as PartialBlock[])
       : undefined,
     uploadFile: handleUpload,
   });
 
-  // Set editable state after editor creation
-  if (editor && typeof editable !== "undefined") {
-    editor.isEditable = editable;
-  }
+  // Use useEffect to set editable state after editor creation
+  useEffect(() => {
+    if (editor && typeof editable !== "undefined") {
+      editor.isEditable = editable;
+    }
+  }, [editor, editable]);
 
   return (
     <div>
