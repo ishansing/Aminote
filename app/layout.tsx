@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jotion",
+  title: "Aminote",
   description: "Note taking app",
   icons: {
     icon: [
@@ -53,7 +53,7 @@ export default function RootLayout({
               defaultTheme="system"
               enableSystem
               disableTransitionOnChange
-              storageKey="jotion-theme"
+              storageKey="aminote-theme"
             >
               <Toaster position="bottom-center" />
               <ModalProvider />
